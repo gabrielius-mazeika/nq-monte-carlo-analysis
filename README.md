@@ -33,6 +33,10 @@ A simple trading rule is defined:
 | Always Long benchmark | +1,152 points |
 | Monte Carlo percentile | **99.86%** |
 
+## Dashboard Preview
+
+![Dashboard](dashboard_screenshot.png)
+
 **Interpretation:** Out of 10,000 simulated "alternative worlds" (where rainfall follows the same Markov structure but falls on different days), only ~14 produced a higher PnL than the real world. This suggests a statistically significant relationship between NYC rainfall patterns and NAS100 direction (p ≈ 0.001).
 
 ## Important Limitations
