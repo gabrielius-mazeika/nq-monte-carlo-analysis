@@ -33,6 +33,12 @@ A simple trading rule is defined:
 | Always Long benchmark | +1,152 points |
 | Monte Carlo percentile | **99.86%** |
 
+## Visual: Strategy vs Markov-Generated Alternatives
+
+![Monte Carlo Paths](monte_carlo_paths.png)
+
+The white line represents the actual strategy's cumulative PnL. The blue/teal bands show the distribution of 1,000 simulated alternative rainfall histories generated using the same Markov transition probabilities. The actual strategy spends nearly the entire 9-year period above the 95th percentile band — an outcome highly unlikely under random rainfall patterns.
+
 ## Dashboard Preview
 
 ![Dashboard](dashboard_screenshot.png)
