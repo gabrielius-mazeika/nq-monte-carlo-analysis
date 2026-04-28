@@ -6,20 +6,27 @@ This project investigates an unconventional hypothesis: **does rainfall in New Y
 
 Using 9 years of 15-minute NAS100 futures data (2016–2025) and NOAA Central Park weather records, I built a complete analytical pipeline combining Python, SQL, and Power BI to test this hypothesis through Monte Carlo simulation.
 
-## The Hypothesis
+## The Strategy
 
-A simple trading rule is defined:
-- **Rainy day** (precipitation > 0): Short position at 09:30 ORB, exit at 16:30
-- **Dry day** (precipitation = 0): Long position at 09:30 ORB, exit at 16:30
+A simple, fully-defined trading rule:
+- **Rainy day** (any precipitation > 0): Short position at 09:30 ORB Close, exit at 16:30 Close
+- **Dry day** (no precipitation): Long position at 09:30 ORB Close, exit at 16:30 Close
 
-**Question:** Does this weather-based signal outperform random selection (a coin flip)?
+![Strategy Illustration](strategy_illustration.png)
+
+The orange band represents the 15-minute Opening Range (09:30 candle High-Low). Entry direction is determined by NYC weather data, exit is fixed at the 16:30 daily close.
 
 ## Methodology
 
-1. **Data Collection** — NAS100 15-minute OHLC data (~207k rows) + NOAA daily precipitation data for NYC Central Park
-2. **Data Engineering** — Filter to 09:30 and 16:30 candles, pivot into daily view, merge with weather
+1. **Data Collection** — NAS100 15-minute OHLC data (~207k rows) + NOAA daily precipitation data for NYC Central Park (3,256 days)
+2. **Data Engineering** — Filter to 09:30 and 16:30 candles, pivot into daily view, merge with weather data, handle early closes (13 days excluded due to missing 16:30 data)
 3. **Strategy Logic** — Apply Long/Short direction based on precipitation, calculate PnL
-4. **Markov Chain Modeling** — Compute rainfall transition probabilities (rainy→rainy, dry→rainy)
+4. **Markov Chain Modeling** — Compute rainfall transition probabilities from 2,265 consecutive day pairs
+
+![Markov Matrix](markov_matrix.png)
+
+The matrix shows that rainfall has **persistence**: rainy days follow rainy days at 43.6%, well above the base rate of 36.1%. This justifies using a Markov chain (rather than independent random sampling) to generate realistic synthetic rainfall histories.
+
 5. **Monte Carlo Simulation** — Generate 10,000 synthetic rainfall histories using the Markov matrix, apply the strategy to each, compare real results against the distribution
 6. **Interactive Dashboard** — Power BI visualization connected to SQLite database
 
@@ -29,51 +36,59 @@ A simple trading rule is defined:
 |--------|-------|
 | Total trading days analyzed | 2,266 |
 | Total Weather Strategy PnL | +11,915 points |
-| Win rate | 52.1% |
+| Average PnL per trade | +5.26 points (~0.043%) |
+| Win rate | 52.4% |
 | Always Long benchmark | +1,152 points |
+| Outperformance vs Always Long | **10.3x** |
 | Monte Carlo percentile | **99.86%** |
+| Rainy day average move | -6.53 points |
+| Dry day average move | +4.53 points |
+| Short win rate (rainy days) | 50.4% |
+| Long win rate (dry days) | 53.5% |
+
+**Interpretation:** Out of 10,000 simulated alternative worlds (where rainfall follows the same Markov structure but falls on different days), only ~14 produced a higher PnL than the real world. This suggests a statistically significant relationship between NYC rainfall patterns and NAS100 direction (p ≈ 0.001).
 
 ## Visual: Strategy vs Markov-Generated Alternatives
 
 ![Monte Carlo Paths](monte_carlo_paths.png)
 
-The white line represents the actual strategy's cumulative PnL. The blue/teal bands show the distribution of 1,000 simulated alternative rainfall histories generated using the same Markov transition probabilities. The actual strategy spends nearly the entire 9-year period above the 95th percentile band — an outcome highly unlikely under random rainfall patterns.
-
-## Dashboard Preview
-
-![Dashboard](dashboard_screenshot.png)
-
-**Interpretation:** Out of 10,000 simulated "alternative worlds" (where rainfall follows the same Markov structure but falls on different days), only ~14 produced a higher PnL than the real world. This suggests a statistically significant relationship between NYC rainfall patterns and NAS100 direction (p ≈ 0.001).
+The white line represents the actual strategy's cumulative PnL. The blue/teal bands show the distribution of 10,000 simulated alternative rainfall histories generated using the same Markov transition probabilities. The actual strategy spends nearly the entire 9-year period above the 95th percentile band — an outcome highly unlikely under random rainfall patterns.
 
 ## Important Limitations
 
 This analysis is an **academic exploration**, not a tradeable strategy:
 
-- **Look-ahead bias**: Same-day precipitation totals are used, which include rainfall occurring after market close. A production version would use previous-day weather or morning-only precipitation
+- **Look-ahead bias**: Same-day precipitation totals are used, which include rainfall occurring after market close. A production version would use weather forecasts (which are ~85% accurate over 24h) or morning-only precipitation
 - **Confounding variables**: The observed correlation may reflect seasonal effects, volatility regimes, or other hidden factors rather than a direct weather→market relationship
-- **No out-of-sample validation**: The entire 2016–2025 period was used; a proper backtest would reserve recent years for validation
-- **Academic literature notes** similar effects (Saunders 1993, Hirshleifer & Shumway 2003), but the mechanism remains debated
+- **No out-of-sample validation**: The entire 2016–2025 period was used for both modeling and testing
+- **Academic literature notes** similar effects (Saunders 1993, Hirshleifer & Shumway 2003 on weather/sentiment effects in markets), though mechanisms remain debated
 
 ## Tech Stack
 
-- **Python** (pandas, numpy, matplotlib) — data processing, Monte Carlo simulation
+- **Python** (pandas, numpy, matplotlib, mplfinance) — data processing, Monte Carlo simulation, visualizations
 - **SQLite** — relational storage of all processed data
 - **Power BI** — interactive dashboard
 - **Jupyter Notebook** — analytical workflow and documentation
 
 ## Project Structure
+
 nq-monte-carlo-analysis/
-├── 01_data_exploration.ipynb    # Data loading, cleaning, strategy logic, Monte Carlo
-├── 02_sql_setup.ipynb           # SQLite database creation and SQL queries
-├── nq_15min.csv                 # Raw NAS100 15-minute data
-├── nyc_weather.csv              # Raw NOAA precipitation data
-├── nq_project.db                # SQLite database with all processed tables
+├── 01_data_exploration.ipynb     # Data loading, cleaning, strategy logic, Monte Carlo
+├── 02_sql_setup.ipynb            # SQLite database creation and SQL queries
+├── nq_15min.csv                  # Raw NAS100 15-minute data
+├── nyc_weather.csv               # Raw NOAA precipitation data
+├── nq_project.db                 # SQLite database with all processed tables
 ├── nq_monte_carlo_dashboard.pbix # Power BI interactive dashboard
-└── exports/                     # CSV exports for Power BI
+├── exports/                      # CSV exports for Power BI
+├── strategy_illustration.png     # Strategy explanation visual
+├── markov_matrix.png             # Markov transition probabilities
+├── monte_carlo_paths.png         # Monte Carlo simulation results
+└── dashboard_screenshot.png      # Power BI dashboard preview
+
 ## How to Reproduce
 
 1. Clone this repository
-2. Install dependencies: `pip install pandas numpy matplotlib`
+2. Install dependencies: `pip install pandas numpy matplotlib mplfinance`
 3. Open `01_data_exploration.ipynb` in Jupyter, run all cells
 4. Open `02_sql_setup.ipynb`, run all cells to rebuild the SQLite database
 5. Open `nq_monte_carlo_dashboard.pbix` in Power BI Desktop
