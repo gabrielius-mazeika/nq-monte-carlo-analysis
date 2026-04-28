@@ -74,18 +74,18 @@ This analysis is an **academic exploration**, not a tradeable strategy:
 
 ## Project Structure
 
-nq-monte-carlo-analysis/
-├── 01_data_exploration.ipynb     # Data loading, cleaning, strategy logic, Monte Carlo
-├── 02_sql_setup.ipynb            # SQLite database creation and SQL queries
-├── nq_15min.csv                  # Raw NAS100 15-minute data
-├── nyc_weather.csv               # Raw NOAA precipitation data
-├── nq_project.db                 # SQLite database with all processed tables
-├── nq_monte_carlo_dashboard.pbix # Power BI interactive dashboard
-├── exports/                      # CSV exports for Power BI
-├── strategy_illustration.png     # Strategy explanation visual
-├── markov_matrix.png             # Markov transition probabilities
-├── monte_carlo_paths.png         # Monte Carlo simulation results
-└── dashboard_screenshot.png      # Power BI dashboard preview
+    nq-monte-carlo-analysis/
+    ├── 01_data_exploration.ipynb     # Data loading, cleaning, strategy logic, Monte Carlo
+    ├── 02_sql_setup.ipynb            # SQLite database creation and SQL queries
+    ├── nq_15min.csv                  # Raw NAS100 15-minute data
+    ├── nyc_weather.csv               # Raw NOAA precipitation data
+    ├── nq_project.db                 # SQLite database with all processed tables
+    ├── nq_monte_carlo_dashboard.pbix # Power BI interactive dashboard
+    ├── exports/                      # CSV exports for Power BI
+    ├── strategy_illustration.png     # Strategy explanation visual
+    ├── markov_matrix.png             # Markov transition probabilities
+    ├── monte_carlo_paths.png         # Monte Carlo simulation results
+    └── dashboard_screenshot.png      # Power BI dashboard preview
 
 ## How to Reproduce
 
