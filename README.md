@@ -16,12 +16,14 @@ A simple, fully-defined trading rule:
 
 The orange band represents the 15-minute Opening Range (09:30 candle High-Low). Entry direction is determined by NYC weather data, exit is fixed at the 16:30 daily close.
 
+**Question:** Does this weather-based signal outperform random selection (a coin flip)?
+
 ## Methodology
 
 1. **Data Collection** — NAS100 15-minute OHLC data (~207k rows) + NOAA daily precipitation data for NYC Central Park (3,256 days)
-2. **Data Engineering** — Filter to 09:30 and 16:30 candles, pivot into daily view, merge with weather data, handle early closes (13 days excluded due to missing 16:30 data)
+2. **Data Engineering** — Filter to 09:30 and 16:30 candles, pivot into daily view, merge with weather data, handle early closes
 3. **Strategy Logic** — Apply Long/Short direction based on precipitation, calculate PnL
-4. **Markov Chain Modeling** — Compute rainfall transition probabilities from 2,265 consecutive day pairs
+4. **Markov Chain Modeling** — Compute rainfall transition probabilities (rainy→rainy, dry→rainy)
 
 ![Markov Matrix](markov_matrix.png)
 
