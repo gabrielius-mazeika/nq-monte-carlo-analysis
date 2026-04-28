@@ -56,6 +56,10 @@ The matrix shows that rainfall has **persistence**: rainy days follow rainy days
 
 The white line represents the actual strategy's cumulative PnL. The blue/teal bands show the distribution of 10,000 simulated alternative rainfall histories generated using the same Markov transition probabilities. The actual strategy spends nearly the entire 9-year period above the 95th percentile band — an outcome highly unlikely under random rainfall patterns.
 
+## Dashboard Preview
+
+![Dashboard](dashboard_screenshot.png)
+
 ## Important Limitations
 
 This analysis is an **academic exploration**, not a tradeable strategy:
