@@ -85,6 +85,8 @@ This analysis is an **academic exploration**, not a tradeable strategy:
     ├── strategy_illustration.png     # Strategy explanation visual
     ├── markov_matrix.png             # Markov transition probabilities
     ├── monte_carlo_paths.png         # Monte Carlo simulation results
+    ├── NQ 2016-2025.xlsx             # Excel reference file with merged NQ + weather data
+    ├── nq_project.sqbpro             # DB Browser for SQLite project file (saved queries)
     └── dashboard_screenshot.png      # Power BI dashboard preview
 
 ## How to Reproduce
