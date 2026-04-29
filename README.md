@@ -12,7 +12,7 @@ A simple, fully-defined trading rule:
 - **Rainy day** (any precipitation > 0): Short position at 09:30 ORB Close, exit at 16:30 Close
 - **Dry day** (no precipitation): Long position at 09:30 ORB Close, exit at 16:30 Close
 
-![Strategy Illustration](strategy_illustration.png?raw=true&v=2)
+![Strategy Illustration](strategy_illustration.png)
 
 The orange band represents the 15-minute Opening Range (09:30 candle High-Low). Entry direction is determined by NYC weather data, exit is fixed at the 16:30 daily close. 
 
