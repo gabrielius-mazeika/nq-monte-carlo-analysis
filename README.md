@@ -48,11 +48,13 @@ The matrix shows that rainfall has **persistence**: rainy days follow rainy days
 | Short win rate (rainy days) | 50.4% |
 | Long win rate (dry days) | 53.5% |
 
-**Interpretation:** Out of 10,000 simulated alternative worlds (where rainfall follows the same Markov structure but falls on different days), only ~14 produced a higher PnL than the real world. This suggests a statistically significant relationship between NYC rainfall patterns and NAS100 direction (p ≈ 0.001).
+**Interpretation:** Out of 10,000 simulated alternative worlds (where rainfall follows the same Markov structure but falls on different days), only ~14 produced a higher PnL than the real world. This places the observed result in the extreme tail of the simulated distribution — a statistically unusual outcome, even if the explanation remains unclear.
+
+At the same time, the underlying win rates remain close to a coin flip (50.4% on rainy days, 53.5% on dry days), suggesting that any apparent "edge" is subtle at best. Either way, while the model might tempt a gambler to check the weather forecast before placing a trade, the more reasonable takeaway is that unusual patterns can emerge surprisingly easily.
 
 ![Always Long vs Weather Strategy](always_long_vs_weather.png)
 
-The chart above compares the Weather Strategy against a naive Always Long benchmark — same entry at 09:30, same exit at 16:30, every single day. The only difference is direction. Over 9 years, the Weather Strategy outperformed Always Long by 10.3x, suggesting the rainfall signal carries genuine directional information rather than simply capturing intraday drift.
+The chart above compares the Weather Strategy against an Always Long benchmark — same entry at 09:30, same exit at 16:30, every single day. The only difference is direction. Note that buy-and-hold over this period would have captured the full NAS100 bull run — but both strategies here trade intraday only, capturing no overnight moves. Within that constrained universe, the Weather Strategy outperformed Always Long by 10.3x, suggesting the rainfall signal carries genuine directional information rather than simply capturing intraday drift.
 
 ## Visual: Strategy vs Markov-Generated Alternatives
 
