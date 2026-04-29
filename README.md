@@ -14,7 +14,7 @@ A simple, fully-defined trading rule:
 
 ![Strategy Illustration](strategy_illustration.png)
 
-The orange band represents the 15-minute Opening Range (09:30 candle High-Low). Entry direction is determined by NYC weather data, exit is fixed at the 16:30 daily close.
+The orange band represents the 15-minute Opening Range (09:30 candle High-Low). Entry direction is determined by NYC weather data, exit is fixed at the 16:30 daily close. 
 
 **Question:** Does this weather-based signal outperform random selection (a coin flip)?
 
