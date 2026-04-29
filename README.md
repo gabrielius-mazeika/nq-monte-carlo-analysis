@@ -95,6 +95,7 @@ This analysis is an **academic exploration**, not a tradeable strategy:
     ├── strategy_illustration.png     # Strategy explanation visual
     ├── markov_matrix.png             # Markov transition probabilities
     ├── monte_carlo_paths.png         # Monte Carlo simulation results
+    ├── always_long_vs_weather.png    # Long vs strategy comparison
     ├── NQ 2016-2025.xlsx             # Excel reference file with merged NQ + weather data
     ├── nq_project.sqbpro             # DB Browser for SQLite project file (saved queries)
     └── dashboard_screenshot.png      # Power BI dashboard preview
@@ -106,3 +107,7 @@ This analysis is an **academic exploration**, not a tradeable strategy:
 3. Open `01_data_exploration.ipynb` in Jupyter, run all cells
 4. Open `02_sql_setup.ipynb`, run all cells to rebuild the SQLite database
 5. Open `nq_monte_carlo_dashboard.pbix` in Power BI Desktop
+
+## Project overview
+
+This project started as a personal challenge — I wanted to work with a large, real-world dataset that spanned multiple data sources and required a full analytical pipeline from raw data to visual output. The hypothesis itself (does NYC rainfall predict NAS100 direction?) was chosen deliberately for its absurdity. Along the way I got hands-on experience connecting disparate data sources, managing ~207k rows of tick data in SQL, building Monte Carlo simulations in Python, and publishing interactive dashboards in Power BI.
