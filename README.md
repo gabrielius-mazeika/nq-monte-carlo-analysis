@@ -60,6 +60,8 @@ The white line represents the actual strategy's cumulative PnL. The blue/teal ba
 
 ![Dashboard](dashboard_screenshot.png)
 
+Built in Power BI on top of the SQLite database. Filters by year, shows daily PnL distribution histogram, cumulative equity curve, and annual breakdown.
+
 ## Important Limitations
 
 This analysis is an **academic exploration**, not a tradeable strategy:
