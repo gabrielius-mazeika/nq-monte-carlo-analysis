@@ -66,7 +66,7 @@ The white line represents the actual strategy's cumulative PnL. The blue/teal ba
 
 ![Dashboard](dashboard_screenshot.png)
 
-Built in Power BI on top of the SQLite database. Filters by year, shows daily PnL distribution histogram, cumulative equity curve, and annual breakdown.
+**Dashboard:** Built in Power BI on top of the SQLite database. Supports strategy switching between Weather Strategy, Always Long, and Always Short, with a date range slicer for custom period analysis. Displays cumulative PnL curve, strategy win rate, and total PnL in points.
 
 ## Important Limitations
 
