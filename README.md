@@ -50,6 +50,10 @@ The matrix shows that rainfall has **persistence**: rainy days follow rainy days
 
 **Interpretation:** Out of 10,000 simulated alternative worlds (where rainfall follows the same Markov structure but falls on different days), only ~14 produced a higher PnL than the real world. This suggests a statistically significant relationship between NYC rainfall patterns and NAS100 direction (p ≈ 0.001).
 
+![Always Long vs Weather Strategy](always_long_vs_weather.png)
+
+The chart above compares the Weather Strategy against a naive Always Long benchmark — same entry at 09:30, same exit at 16:30, every single day. The only difference is direction. Over 9 years, the Weather Strategy outperformed Always Long by 10.3x, suggesting the rainfall signal carries genuine directional information rather than simply capturing intraday drift.
+
 ## Visual: Strategy vs Markov-Generated Alternatives
 
 ![Monte Carlo Paths](monte_carlo_paths.png)
