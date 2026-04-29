@@ -108,6 +108,6 @@ This analysis is an **academic exploration**, not a tradeable strategy:
 4. Open `02_sql_setup.ipynb`, run all cells to rebuild the SQLite database
 5. Open `nq_monte_carlo_dashboard.pbix` in Power BI Desktop
 
-## Project overview
+## Motivation
 
 This project started as a personal challenge — I wanted to work with a large, real-world dataset that spanned multiple data sources and required a full analytical pipeline from raw data to visual output. The hypothesis itself (does NYC rainfall predict NAS100 direction?) was chosen deliberately for its absurdity. Along the way I got hands-on experience connecting disparate data sources, managing ~207k rows of tick data in SQL, building Monte Carlo simulations in Python, and publishing interactive dashboards in Power BI.
