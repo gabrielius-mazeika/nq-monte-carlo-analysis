@@ -1,5 +1,9 @@
 # NAS100 Weather Strategy: A Monte Carlo Investigation
 
+## Motivation
+
+This project is a hands-on exploration of data science and engineering fundamentals. As a beginner in the field, I wanted to move beyond simple tutorials and build a complete, end-to-end analytical pipeline from scratch.  It started as a personal challenge — I wanted to work with a large, real-world dataset that spanned multiple data sources and required a full analytical pipeline from raw data to visual output. The hypothesis itself (does NYC rainfall predict NAS100 direction?) was chosen deliberately for its absurdity. Along the way I got hands-on experience connecting disparate data sources, managing ~207k rows of tick data in SQL, building Monte Carlo simulations in Python, and publishing interactive dashboards in Power BI. The goal was not to find a real trading strategy, but to demonstrate how modern tools can be used to systematically investigate any idea while maintaining a critical and objective mindset.  
+
 ## Project Overview
 
 This project investigates an unconventional hypothesis: **does rainfall in New York City correlate with the daily direction of the NAS100 index?**
@@ -109,7 +113,3 @@ This analysis is an **academic exploration**, not a tradeable strategy:
 3. Open `01_data_exploration.ipynb` in Jupyter, run all cells
 4. Open `02_sql_setup.ipynb`, run all cells to rebuild the SQLite database
 5. Open `nq_monte_carlo_dashboard.pbix` in Power BI Desktop
-
-## Motivation
-
-This project is a hands-on exploration of data science and engineering fundamentals. As a beginner in the field, I wanted to move beyond simple tutorials and build a complete, end-to-end analytical pipeline from scratch.  It started as a personal challenge — I wanted to work with a large, real-world dataset that spanned multiple data sources and required a full analytical pipeline from raw data to visual output. The hypothesis itself (does NYC rainfall predict NAS100 direction?) was chosen deliberately for its absurdity. Along the way I got hands-on experience connecting disparate data sources, managing ~207k rows of tick data in SQL, building Monte Carlo simulations in Python, and publishing interactive dashboards in Power BI. The goal was not to find a real trading strategy, but to demonstrate how modern tools can be used to systematically investigate any idea while maintaining a critical and objective mindset.  
